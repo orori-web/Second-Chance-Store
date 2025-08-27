@@ -1,0 +1,38 @@
+# Query: bcryp
+# ContextLines: 1
+
+11 results - 3 files
+
+backend\package-lock.json:
+   11        "dependencies": {
+   12:         "bcryptjs": "^3.0.2",
+   13          "dotenv": "^16.4.7",
+
+  150      },
+  151:     "node_modules/bcryptjs": {
+  152        "version": "3.0.2",
+  153:       "resolved": "https://registry.npmjs.org/bcryptjs/-/bcryptjs-3.0.2.tgz",
+  154        "integrity": "sha512-k38b3XOZKv60C4E2hVsXTolJWfkGRMbILBIe2IBITXciy5bOsTKot5kDrf3ZfufQtQOUN5mXceUEpU1rTl9Uog==",
+
+  156        "bin": {
+  157:         "bcrypt": "bin/bcrypt"
+  158        }
+
+backend\package.json:
+  12    "dependencies": {
+  13:     "bcryptjs": "^3.0.2",
+  14      "dotenv": "^16.4.7",
+
+backend\routes\userRoutes.js:
+   1  const express = require('express');
+   2: const bcrypt = require('bcryptjs');
+
+   3  const jwt = require('jsonwebtoken'); // Import JWT
+
+  25          // Hash the password before saving
+  26:         const hashedPassword = await bcrypt.hash(password, 10);
+  27          
+
+  78          // Compare hashed passwords
+  79:         const isMatch = await bcrypt.compare(password, user.password);
+  80          if (!isMatch) {

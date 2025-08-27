@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions - Second Chance Store</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Terms & Conditions container */
+        .terms-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .terms-container h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #333;
+        }
+
+        .terms-container h2 {
+            font-size: 1.6em;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .terms-container p, .terms-container li {
+            font-size: 1em;
+            margin-bottom: 12px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .terms-container ul {
+            padding-left: 20px;
+        }
+
+        .terms-container a {
+            color: #ff6600;
+            text-decoration: none;
+        }
+
+        .terms-container a:hover {
+            text-decoration: underline;
+        }
+
+        /* Back button */
+        .back-btn {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #ff6600;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #ff4500;
+        }
+
+        /* Pop-up modal */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            display: none;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .popup-content h2 {
+            margin-bottom: 15px;
+            color: #333;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .popup-content p {
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .popup-content button {
+            padding: 10px 25px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .popup-content button:hover {
+            background-color: #ff4500;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Disclaimer Pop-up -->
+    <div id="disclaimer-popup" class="popup-overlay">
+        <div class="popup-content">
+            <h2>Important Notice</h2>
+            <p>
+                Sellers are solely responsible for the products they list. 
+                <strong>Second Chance Store</strong> does <strong>not verify ownership or authenticity</strong> of products. 
+                The platform is <strong>not responsible for stolen, illegal, or counterfeit items</strong>.
+            </p>
+            <p>By posting or buying, you agree to transact at your own risk.</p>
+            <button id="disclaimer-close">I Understand</button>
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <div style="text-align: center;">
+        <a href="javascript:history.back()" class="back-btn">← Back</a>
+    </div>
+
+    <!-- Terms & Conditions -->
+    <div class="terms-container">
+        <h1>Terms and Conditions</h1>
+
+        <h2>1. Introduction</h2>
+        <p>Welcome to <strong>Second Chance Store</strong>. By accessing or using our platform, you agree to comply with these Terms and Conditions. Please read them carefully.</p>
+
+        <h2>2. Account Registration</h2>
+        <ul>
+            <li>You must create an account to buy or sell products.</li>
+            <li>Provide accurate and truthful information during registration.</li>
+            <li>You are responsible for maintaining the confidentiality of your account credentials.</li>
+        </ul>
+
+        <h2>3. Seller Responsibilities</h2>
+        <ul>
+            <li>Sellers must provide accurate product descriptions and clear images.</li>
+            <li>Sellers may not post illegal, counterfeit, or prohibited items.</li>
+            <li>Sellers must ensure products are available and ready for delivery once sold.</li>
+            <li>Sellers are responsible for setting fair and transparent prices.</li>
+        </ul>
+
+        <h2>4. Buyer Responsibilities</h2>
+        <ul>
+            <li>Buyers must provide accurate delivery information.</li>
+            <li>Payment is currently <strong>cash on delivery</strong>, and buyers are expected to pay the full amount upon receipt of products.</li>
+        </ul>
+
+        <h2>5. Product Listings and Guidelines</h2>
+        <p>Listings must comply with platform rules. The platform reserves the right to remove listings that violate guidelines or laws.</p>
+
+        <h2>6. Payments and Commissions</h2>
+        <p>
+            All payments are handled by <strong>Second Chance Store</strong>. When a buyer places an order, the platform collects the payment upon delivery.  
+            A fixed <strong>10% commission</strong> is deducted from the total selling price before the seller is paid.  
+            This commission is non-refundable, even in cases of returns or disputes.  
+        </p>
+
+        <h2>7. Communication</h2>
+        <p>Direct messaging between buyers and sellers is not currently available on the platform. Any communication outside the platform is at your own risk.</p>
+
+        <h2>8. Intellectual Property</h2>
+        <p>Users must not post content that infringes on copyrights, trademarks, or other intellectual property rights.</p>
+
+        <h2>9. Limitation of Liability</h2>
+        <p>The platform is not responsible for any loss, damage, or disputes arising from transactions between buyers and sellers. Use of the platform is at your own risk.</p>
+
+        <h2>10. Termination</h2>
+        <p>We may suspend or terminate accounts that violate these Terms and Conditions. Users may close their accounts at any time by contacting support.</p>
+
+        <h2>11. Changes to Terms</h2>
+        <p>We may update these Terms and Conditions from time to time. Users are encouraged to review them regularly.</p>
+
+        <h2>12. Product Responsibility and Disclaimer</h2>
+        <ul>
+            <li>Sellers are solely responsible for the products they list on the platform.</li>
+            <li><strong>Second Chance Store</strong> does <strong>not verify the authenticity or ownership</strong> of the products posted.</li>
+            <li>The platform is <strong>not responsible for any stolen, illegal, or counterfeit items</strong> listed or sold by users.</li>
+            <li>Buyers and sellers transact at their own risk. Any disputes regarding product authenticity, legality, or ownership must be resolved directly between the parties involved.</li>
+        </ul>
+
+        <h2>13. Contact Us</h2>
+        <p>For any questions or issues regarding these Terms, contact us at <a href="mailto:ororisimone@gmail.com">support@secondchancestore.com</a>.</p>
+    </div>
+
+    <!-- Script for pop-up -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const popup = document.getElementById('disclaimer-popup');
+            const closeBtn = document.getElementById('disclaimer-close');
+
+            if (!localStorage.getItem('disclaimerAccepted')) {
+                popup.style.display = 'flex';
+            }
+
+            closeBtn.addEventListener('click', function() {
+                localStorage.setItem('disclaimerAccepted', 'true');
+                popup.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="styles/styles2.css">
+    <link rel="stylesheet" href="styles/productswrapper.css">
+     <link rel="stylesheet" href="styles/mobile2.css">
+    <link rel="stylesheet" href="styles/modal.css">
+    
+    <title>Product Page</title>
+</head>
+<body>
+
+    <!-- Main navigation -->
+    <nav class="nav-main">
+        <div class="nav-links">
+            <a href="index1.html">Home</a>
+            <a href="products2.html">Product</a>
+            <a href="cart5.html">Cart</a>
+            <a href="sell-product.html">sell</a>
+            <a href="account3.html">Account</a>
+        </div>
+        <div class="nav-links">
+            
+            <a href="signup10.html">SignUp/logIn</a>
+        </div>
+    </nav>
+
+    <!-- Secondary navigation with search and categories -->
+    <nav class="nav-secondary">
+        <div class="search-bar">
+            <!-- Search Input -->
+            <input type="text" id="search-query" placeholder="Search for products (name, description, category)">
+            
+            <!-- Suggestions will appear here -->
+            <div id="autocomplete-suggestions"></div>
+        </div>
+        <div class="pagination"></div>  
+    </nav>
+    
+ <div class="categories"> 
+    <button>Categories</button>
+     <div class="categories-content">
+         <a href="#" data-category="Electronics">Electronics</a>
+          <a href="#" data-category="Fashion">Fashion</a> 
+          <a href="#" data-category="Home & Living">Home & Living</a>
+           <a href="#" data-category="Sports & Outdoors">Sports & Outdoors</a>
+         </div> 
+        </div>
+
+<!-- container where products will show -->
+<div id="products-container"></div>
+
+
+    </nav>
+
+
+    
+    <div class="product-section"></div>
+    <h1>Our Products</h1>
+    <div class="items-container">
+        <!-- Products will be loaded here dynamically by products2.js -->
+    </div>
+    
+    <div id="product-details-modal" class="modal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <div class="product-details-container">
+            <img id="modal-product-image" src="" alt="Product Image" class="product-image-large">
+            <div class="product-info">
+              <h2 id="modal-product-name"></h2>
+              <p id="modal-product-price"></p>
+              <p id="modal-product-category"></p>
+              <p id="modal-product-description"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    
+    
+
+   
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-section">
+            <a href="index1.html">Home</a>
+            <a href="products2.html">Product</a>
+            <a href="account3.html">Account</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+        <div class="footer-section">
+            <h4>Customer Service</h4>
+              <a href="T&C.html">Terms&Conditions</a>
+        </div>
+        <div class="footer-section">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/share/1AyLSaLpER/">Facebook</a>
+                <a href="#twitter">X</a>
+                <a href="https://wa.me/+254748232243/">Whatsapp</a>
+                <a href="https://www.instagram.com/secondchancestore_embu/">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/products2.js"></script>
+    <script src="scripts/search.js"></script>
+    
+
+
+</body>
+</html>

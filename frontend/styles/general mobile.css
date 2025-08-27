@@ -1,0 +1,69 @@
+/* Mobile navigation - horizontal scroll */
+@media (max-width: 768px) {
+    .nav-main {
+        flex-direction: row;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 10px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-links {
+        display: inline-flex;
+        gap: 10px;
+    }
+
+    .nav-main a {
+        flex: 0 0 auto;
+        padding: 8px 15px;
+        white-space: nowrap;
+    }
+
+    .nav-main::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* Mobile Footer */
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        padding: 15px 10px;
+        text-align: left;
+    }
+
+    .footer-section {
+        flex: 1;
+        margin: 0 5px;
+        min-width: 90px;
+    }
+
+    .footer-section h4 {
+        font-size: 1em;
+        margin-bottom: 6px;
+    }
+
+    .footer-section a {
+        font-size: 0.75em;
+        margin-bottom: 4px;
+        display: block;
+    }
+
+    .social-icons a {
+        margin-right: 2px;
+        padding: 2px 4px;
+        border-radius: 4px;
+        background-color: #444;
+        color: white;
+        text-decoration: none;
+        font-size: 0.7em;
+        max-width: fit-content;
+    }
+
+    .social-icons a:hover {
+        background-color: #ff6600;
+        color: white;
+    }
+}

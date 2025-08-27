@@ -1,0 +1,138 @@
+ /* General styles */
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Main navigation */
+.nav-main {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #333;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-main a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+.nav-main a:hover {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+/* Dashboard Section */
+.dashboard-section {
+    padding: 20px;
+    margin: 10px auto;
+    width: 90%;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.dashboard-section:hover {
+    transform: scale(1.02);
+}
+
+.dashboard-section h2 {
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    color: #ff6600;
+}
+
+/* Product List */
+.product-list {
+    margin-top: 20px;
+}
+
+.product {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin: 5px 0;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.product:hover {
+    background-color: #f9f9f9;
+}
+
+.purchase-more {
+    display: block;
+    padding: 10px;
+    background-color: #ff6600;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.purchase-more:hover {
+    background-color: #ff4500;
+}
+
+/* Pie Chart Container */
+.pie-chart {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    position: relative;
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+.footer-section {
+    width: 30%;
+    margin: 10px 0;
+}
+
+.footer-section h4 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.footer-section a {
+    display: block;
+    color: #ddd;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.footer-section a:hover {
+    color: #ff4500;
+}

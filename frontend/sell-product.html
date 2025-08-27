@@ -1,0 +1,69 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Product</title>
+    <link rel="stylesheet" href="styles/styles9.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<header>
+    <nav>
+        <ul>
+            <li><a href="index1.html">Home</a></li>
+            <li><a href="products2.html">Products</a></li>
+            <li><a href="cart5.html">Cart</a></li>
+            <li><a href="account3.html">My Account</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Page Title -->
+<h1>Post Your Product</h1>
+
+<!-- Product Form -->
+<section class="sell-product">
+    <div class="form-container">
+        <form id="sell-product-Form" enctype="multipart/form-data">
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+            
+            <label for="category">Category:</label>
+            <select id="category" name="category" required>
+                <option value="Electronics">Electronics</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Home">Home</option>
+                <option value="Books">Books</option>
+                <option value="Sports">Sports</option>
+                <option value="Other">Other</option>
+            </select>
+            
+            <label for="price">Price (Ksh):</label>
+            <input type="number" id="price" name="price" required min="0">
+            
+            <label for="image">Upload Image:</label>
+            <input type="file" id="productImage" name="image" accept="image/*" required>
+            
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="sellerPhone" required placeholder="e.g. +254712345678">
+            
+            <button type="submit">Post Product</button>
+        </form>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 Second Chance Store</p>
+</footer>
+
+<!-- JavaScript -->
+<script src="scripts/sell-product.js"></script>
+
+</body>
+</html>

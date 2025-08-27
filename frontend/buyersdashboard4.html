@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer's Dashboard</title>
+    <link rel="stylesheet" href="styles/styles4.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Main navigation -->
+    <nav class="nav-main">
+        <div class="nav-links">
+            <a href="index1.html">Home</a>
+            <a href="products2.html">Product Page</a>
+            <a href="cart5.html">Cart Page</a>
+            <a href="account3.html">User Account Page</a>
+            <a href="buyersdashboard4.html">Buyer's Dashboard</a>
+        </div>
+        <div class="nav-links">
+            <a href="login6.html">Log In</a>
+            <a href="signup10.html">Sign Up</a>
+        </div>
+    </nav>
+
+    <!-- Dashboard Section -->
+    <div class="dashboard-section">
+        <h2>Buyer's Dashboard</h2>
+        <p>Welcome, Jane Doe! Here are your purchased products:</p>
+
+        <h3>Purchased Products</h3>
+        <div class="product-list">
+            <div class="product">
+                <span>Product Name 1</span>
+                <span>$50.00</span>
+            </div>
+            <div class="product">
+                <span>Product Name 2</span>
+                <span>$100.00</span>
+            </div>
+            <div class="product">
+                <span>Product Name 3</span>
+                <span>$150.00</span>
+            </div>
+        </div>
+
+        <h3>Loyalty Commissions</h3>
+        <div class="pie-chart">
+            <canvas id="loyaltyChart"></canvas>
+        </div>
+
+        <a href="#products" class="purchase-more">Purchase More</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <a href="index1.html">Home</a>
+            <a href="products2.html">Product</a>
+            <a href="account3.html">Account</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+        <div class="footer-section">
+            <h4>Customer Service</h4>
+            <a href="#faq">FAQ</a>
+            <a href="#returns">Returns</a>
+            <a href="#shipping">Shipping Info</a>
+            <a href="#support">Support</a>
+        </div>
+        <div class="footer-section">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+                <a href="#facebook">Facebook</a>
+                <a href="#twitter">Twitter</a>
+                <a href="#instagram">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Pie Chart Data
+        const ctx = document.getElementById('loyaltyChart').getContext('2d');
+        const loyaltyChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Earned', 'Remaining'],
+                datasets: [{
+                    label: 'Loyalty Commissions',
+                    data: [600, 400], // 600 earned, 400 remaining to reach Ksh 1000
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Loyalty Commission Status'
+                    }
+                }
+            }
+        });
+    </script>
+<script src="scripts/buyersDashboard.js"></script>
+
+
+</body>
+</html>

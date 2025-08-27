@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="styles/admin-dashboard.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">Admin Panel</div>
+     <!-- Hamburger button for mobile -->
+  <button class="hamburger-btn">&#9776;</button>
+  
+    <nav>
+      <ul>
+        <li><a href="#dashboard" class="active">Dashboard</a></li>
+        <li><a href="#usersSection" id="manageUsersBtn">Manage Users</a></li>
+        <li><a href="#productsSection" id="manageProductsBtn">Manage Products</a></li>
+        <li><a href="#settings">Settings</a></li>
+        <li><a href="index1.html">Home</a></li>
+        <li><a href="/logout" class="logout">Logout</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Top Header -->
+    <header class="header">
+      <h1>Welcome, Admin</h1>
+      <p>Manage your marketplace with ease</p>
+    </header>
+
+    <!-- Dashboard Overview -->
+    <section id="dashboard" class="section">
+      <h2>Overview</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Total Users</h3>
+          <p id="total-users">--</p>
+        </div>
+        <div class="card">
+          <h3>Total Products</h3>
+          <p id="total-products">--</p>
+        </div>
+        <div class="card">
+          <h3>Orders</h3>
+          <p id="total-orders">--</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ User Management -->
+    <section id="usersSection" class="section hidden">
+      <h2>Manage Users</h2>
+      <table id="usersTable">
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filled dynamically with admin.js -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ✅ Product Management -->
+    <section id="productsSection" class="section hidden">
+      <h2>Manage Products</h2>
+      <table id="productsTable">
+        <thead>
+          <tr>
+            <th>Product ID</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filled dynamically with admin.js -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Settings -->
+    <section id="settings" class="section hidden">
+      <h2>Settings</h2>
+      <p>Future settings and preferences will go here.</p>
+    </section>
+  </main>
+
+  <script src="scripts/admin.js"></script>
+    <script src="scripts/adminit.js"></script>
+</body>
+</html>

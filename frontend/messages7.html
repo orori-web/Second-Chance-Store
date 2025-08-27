@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messaging Page</title>
+    <link rel="stylesheet" href="styles/styles7.css">
+    
+</head>
+<body>
+
+    <!-- Main navigation -->
+    <nav class="nav-main">
+        <div class="nav-links">
+            <a href="index1.html">Home</a>
+            <a href="products2.html">Product Page</a>
+            <a href="cart5.html">Cart Page</a>
+            <a href="account3.html">User Account Page</a>
+        </div>
+        <div class="nav-links">
+            <a href="login6.html">Log In</a>
+            <a href="signup10.html">Sign Up</a>
+        </div>
+    </nav>
+
+    <!-- Chat Container -->
+    <div class="chat-container">
+
+        <!-- Chat List -->
+        <div class="chat-list" id="chatList">
+            <div class="chat-item" onclick="selectChat('buyer1')">
+                <div class="chat-avatar"></div>
+                <div class="chat-info">
+                    <div class="chat-name">Buyer 1</div>
+                    <div class="chat-preview">Hello, I'm interested in your product.</div>
+                </div>
+            </div>
+            <div class="chat-item" onclick="selectChat('buyer2')">
+                <div class="chat-avatar"></div>
+                <div class="chat-info">
+                    <div class="chat-name">Buyer 2</div>
+                    <div class="chat-preview">Can you provide more details?</div>
+                </div>
+            </div>
+            <!-- More chat items can be added here -->
+        </div>
+
+        <!-- Chat Window -->
+        <div class="chat-window" id="chatWindow">
+            <h2>Chat with Buyer</h2>
+            <div class="message-list" id="messageList">
+                <!-- Messages will be appended here -->
+            </div>
+            <div class="input-area">
+                <input type="text" id="messageInput" placeholder="Type your message..." />
+                <button id="sendMessage">Send</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <a href="index1.html">Home</a>
+            <a href="products2.html">Product</a>
+            <a href="account3.html">Account</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+        <div class="footer-section">
+            <h4>Customer Service</h4>
+            <a href="#faq">FAQ</a>
+            <a href="#returns">Returns</a>
+            <a href="#shipping">Shipping Info</a>
+            <a href="#support">Support</a>
+        </div>
+        <div class="footer-section">
+            <h4>Follow Us</h4>
+            <div class="social-icons">
+                <a href="#facebook">Facebook</a>
+                <a href="#twitter">Twitter</a>
+                <a href="#instagram">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mock data for demonstration
+        const messages = {
+            buyer1: [
+                { sender: 'buyer', text: 'Hello, I am interested in your product.', time: '10:00 AM' },
+                { sender: 'seller', text: 'Hi! Thank you for reaching out. How can I help you?', time: '10:01 AM' },
+                { sender: 'buyer', text: 'Can you provide more details?', time: '10:02 AM' },
+            ],
+            buyer2: [
+                { sender: 'buyer', text: 'I want to know the price.', time: '10:05 AM' },
+                { sender: 'seller', text: 'It’s $50.', time: '10:06 AM' },
+                { sender: 'buyer', text: 'Great! I will purchase it.', time: '10:07 AM' },
+            ]
+        };
+
+        const messageList = document.getElementById('messageList');
+        const messageInput = document.getElementById('messageInput');
+
+        // Function to render messages based on selected chat
+        function renderMessages(selectedBuyer) {
+            messageList.innerHTML = '';
+            messages[selectedBuyer].forEach(message => {
+                const messageItem = document.createElement('div');
+                messageItem.classList.add('message', message.sender === 'buyer' ? 'receiver' : 'sender');
+                messageItem.innerHTML = `
+                    ${message.text}
+                    <div class="timestamp">${message.time}</div>
+                `;
+                messageList.appendChild(messageItem);
+            });
+            messageList.scrollTop = messageList.scrollHeight; // Scroll to the bottom
+        }
+
+        // Function to select chat
+        function selectChat(buyer) {
+            const buyerName = buyer.charAt(0).toUpperCase() + buyer.slice(1);
+            document.querySelector('.chat-window h2').innerText = `Chat with ${buyerName}`;
+            renderMessages(buyer);
+        }
+
+        // Send message functionality
+        document.getElementById('sendMessage').addEventListener('click', () => {
+            const messageText = messageInput.value;
+            if (messageText.trim() === '') return;
+
+            const selectedBuyer = document.querySelector('.chat-window h2').innerText.split(' ')[2].toLowerCase();
+            messages[selectedBuyer].push({ sender: 'seller', text: messageText, time: new Date().toLocaleTimeString() });
+            renderMessages(selectedBuyer);
+            messageInput.value = ''; // Clear input
+        });
+
+        // Allow sending messages with Enter key
+        messageInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                document.getElementById('sendMessage').click();
+            }
+        });
+    </script>
+</body>
+</html>
