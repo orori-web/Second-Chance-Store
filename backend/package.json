@@ -2,10 +2,10 @@
   "name": "second-chance-store",
   "version": "1.0.0",
   "description": "Second Chance Store - A marketplace for buyers and sellers of second-hand items.",
-  "main": "index1.js",
+  "main": "server.js.js",
   "scripts": {
-    "start": "node index1.js",
-    "dev": "nodemon index1.js"
+    "start": "node server.js.js",
+    "dev": "nodemon server.js.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
