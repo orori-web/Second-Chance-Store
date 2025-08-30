@@ -34,7 +34,7 @@ async function fetchPopularProducts() {
                         data-price="${product.price}" 
                         data-image="/uploads/${product.image}"
                         data-seller-id="${product.sellerId}"
-                        data-seller-phone="${product.sellerPhone}">Add to Cart</button>
+                        data-seller-phone="${product.sellerPhone}"><i class="fas fa-shopping-cart">Add to Cart</button>
                         </div>
                 </div>
             `;
