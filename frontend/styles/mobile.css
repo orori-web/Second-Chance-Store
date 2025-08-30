@@ -103,6 +103,7 @@
 
     .show-details {
         background-color: #0e9746;
+         border-radius: 50px;
         color: white;
         border: none;
         cursor: pointer;
@@ -110,6 +111,7 @@
 
     .add-to-cart {
         background-color: #f48b3a;
+         border-radius: 50px;
         color: white;
         border: none;
         cursor: pointer;
