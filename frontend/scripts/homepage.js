@@ -26,6 +26,7 @@ async function fetchPopularProducts() {
                 <div class="product-details">
                     <p class="product-name">${product.name}</p>
                     <p class="product-price">Ksh ${product.price}</p>
+                    <div class="button-group">
                     <button class="show-details" data-id="${product._id}">Show Details</button>
                     <button class="add-to-cart" 
                         data-id="${product._id}" 
@@ -34,6 +35,7 @@ async function fetchPopularProducts() {
                         data-image="/uploads/${product.image}"
                         data-seller-id="${product.sellerId}"
                         data-seller-phone="${product.sellerPhone}">Add to Cart</button>
+                        </div>
                 </div>
             `;
 

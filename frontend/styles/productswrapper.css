@@ -232,3 +232,15 @@ button.add-to-cart:hover {
     line-height: 1.5em;
 }
 }
+/* Horizontal button layout */
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.button-group button {
+    flex: 1;
+}
