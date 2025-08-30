@@ -132,16 +132,16 @@ button {
 }
 
 button.show-details {
-    background: #007bff;
+    background: #0e9f46;
     color: #fff;
 }
 
 button.show-details:hover {
-    background: #0056b3;
+    background: #027439;
 }
 
 button.add-to-cart {
-    background: #ff6600;
+    background: #f48b3a;
     color: #fff;
 }
 
