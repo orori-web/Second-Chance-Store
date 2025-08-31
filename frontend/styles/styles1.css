@@ -62,6 +62,7 @@ body {
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transition: all 0.3s ease;
       width: 350px;
+      position: relative; /* 🔑 allows child absolute positioning */
     }
 
     .search-bar:hover {
@@ -87,6 +88,29 @@ body {
     .search-bar .material-icons:hover {
       color: #ff6600; /* Accent hover color */
     }
+
+#autocomplete-suggestions {
+  position: absolute;
+  top: 100%; /* put it just below search bar */
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  max-height: 200px; /* keeps it scrollable on small screens */
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+#autocomplete-suggestions div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+#autocomplete-suggestions div:hover {
+  background: #ff6600;
+  color: #fff;
+}
 
 /* Dropdown categories */
 .categories {
