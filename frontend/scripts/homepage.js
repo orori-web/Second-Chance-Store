@@ -21,7 +21,7 @@ async function fetchPopularProducts() {
 
             productWrapper.innerHTML = `
                 <div class="product-image-container">
-                    <img src="/uploads/${product.image}" alt="${product.name}" class="product-image">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
                 </div>
                 <div class="product-details">
                     <p class="product-name">${product.name}</p>
@@ -32,7 +32,7 @@ async function fetchPopularProducts() {
                         data-id="${product._id}" 
                         data-name="${product.name}" 
                         data-price="${product.price}" 
-                        data-image="/uploads/${product.image}"
+                        data-image="${product.image}"
                         data-seller-id="${product.sellerId}"
                         data-seller-phone="${product.sellerPhone}">Add to Cart</button>
                         </div>
@@ -104,7 +104,8 @@ async function openProductModal(productId) {
         const category = document.getElementById('modal-product-category');
         const description = document.getElementById('modal-product-description');
 
-        if (img) img.src = `/uploads/${product.image}`;
+        if (img) img.src = product.image; // Cloudinary URL
+
         if (name) name.textContent = product.name;
         if (price) price.textContent = `Price: Ksh ${product.price}`;
         if (category) category.textContent = `Category: ${product.category}`;
