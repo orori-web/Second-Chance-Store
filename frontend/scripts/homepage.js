@@ -27,14 +27,16 @@ async function fetchPopularProducts() {
                     <p class="product-name">${product.name}</p>
                     <p class="product-price">Ksh ${product.price}</p>
                     <div class="button-group">
-                    <button class="show-details" data-id="${product._id}">Show Details</button>
+                    <button class="show-details" data-id="${product._id}">Details</button>
                     <button class="add-to-cart" 
                         data-id="${product._id}" 
                         data-name="${product.name}" 
                         data-price="${product.price}" 
                         data-image="${product.image}"
                         data-seller-id="${product.sellerId}"
-                        data-seller-phone="${product.sellerPhone}">Add to Cart</button>
+                        data-seller-phone="${product.sellerPhone}">
+                        <i class="fas fa-shopping-cart"></i>
+                        </button>
                         </div>
                 </div>
             `;

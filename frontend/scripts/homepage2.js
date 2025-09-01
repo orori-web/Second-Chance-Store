@@ -1,0 +1,109 @@
+// ============================
+// Helper: Render a section
+// ============================
+function renderSection(sectionId, products, categoryName) {
+  const container = document.getElementById(sectionId);
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  if (products && products.length > 0) {
+    products.forEach(product => {
+      const productWrapper = document.createElement('div');
+      productWrapper.classList.add('product-container');
+
+      productWrapper.innerHTML = `
+        <div class="product-image-container">
+          <img src="/uploads/${product.image}" alt="${product.name}" class="product-image">
+        </div>
+        <div class="product-details">
+          <p class="product-name">${product.name}</p>
+          <p class="product-price">Ksh ${product.price}</p>
+          <div class="button-group">
+            <button class="show-details" data-id="${product._id}">Show Details</button>
+            <button class="add-to-cart" 
+                data-id="${product._id}" 
+                data-name="${product.name}" 
+                data-price="${product.price}" 
+                data-image="/uploads/${product.image}"
+                data-seller-id="${product.sellerId}"
+                data-seller-phone="${product.sellerPhone}">Add to Cart</button>
+          </div>
+        </div>
+      `;
+
+      container.appendChild(productWrapper);
+    });
+
+   
+
+    attachEventListeners(); // hook up modal + cart buttons
+  } else {
+    container.innerHTML = `<p>No ${categoryName} found</p>`;
+  }
+}
+
+// ============================
+// Load all homepage sections
+// ============================
+async function loadHomepageSections() {
+  try {
+    const response = await fetch('/api/products/homepage');
+    if (!response.ok) throw new Error("Failed to fetch homepage sections");
+
+    const data = await response.json();
+
+    renderSection('addedRecently', data.addedRecently, "Recently Added");
+    renderSection('electronics', data.electronicsDeals, "Electronics");
+    renderSection('phones', data.phoneDeals, "Phones");
+    renderSection('tvs', data.tvDeals, "TVs");
+    renderSection('fashion', data.fashionDeals, "Fashion");
+
+    // New categories
+    renderSection('furnitures', data.furnitureDeals, "Furnitures");
+    renderSection('homeComforts', data.homeComfortsDeals, "Home-Comforts");
+    renderSection('kitchen', data.kitchenDeals, "Kitchen");
+    renderSection('transport', data.transportDeals, "Transport");
+    renderSection('personalCare', data.personalCareDeals, "Personal-Care");
+
+  } catch (err) {
+    console.error("Error loading homepage sections:", err);
+  }
+}
+
+// ============================
+// Scroll + See All button events
+// ============================
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('scroll-left') || e.target.classList.contains('scroll-right')) {
+    const targetId = e.target.dataset.target;
+    const row = document.getElementById(targetId);
+    const scrollAmount = e.target.classList.contains('scroll-left') ? -300 : 300;
+    row.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  }
+
+ 
+});
+
+// ============================
+// Load sections on DOM ready
+// ============================
+document.addEventListener("DOMContentLoaded", () => {
+  loadHomepageSections();
+});
+
+
+document.querySelectorAll('.see-all-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const targetId = btn.dataset.target;
+    const row = document.getElementById(targetId);
+
+    if (!row) return;
+
+    // Toggle the expanded class
+    row.classList.toggle('expanded');
+
+    // Toggle button text
+    btn.textContent = row.classList.contains('expanded') ? 'Show Less' : 'See All';
+  });
+});

@@ -92,22 +92,26 @@
         margin-bottom: 5px;
     }
 
+
     .product-details button {
         padding: 6px;
         font-size: 0.8em;
+        border-radius:50x;
         margin-bottom: 4px;
         border-radius: 4px;
     }
 
     .show-details {
-        background-color: #007bff;
+        background-color: #0e9746;
+         border-radius: 50px;
         color: white;
         border: none;
         cursor: pointer;
     }
 
     .add-to-cart {
-        background-color: #ff6600;
+        background-color: #f48b3a;
+         border-radius: 50px;
         color: white;
         border: none;
         cursor: pointer;
