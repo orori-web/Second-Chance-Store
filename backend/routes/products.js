@@ -35,6 +35,162 @@ router.get('/', async (req, res) => {
     }
 });
 
+
+// ✅ GET homepage sections (each section wrapped separately)
+router.get('/homepage', async (req, res) => {
+  try {
+    
+
+    // Added Recently
+    let addedRecently = [];
+    try {
+      console.log("Fetching recently added products...");
+      addedRecently = await Product.find()
+        .sort({ createdAt: -1 })
+        
+      console.log("Found recently added:", addedRecently.length);
+    } catch (err) {
+      console.error("Error fetching recently added products:", err);
+    }
+
+    // Phone Deals
+    let phoneDeals = [];
+    try {
+      console.log("Fetching phone deals...");
+      phoneDeals = await Product.find({ category: "Phones" })
+        .sort({ createdAt: -1 })
+        
+      console.log("Found phone deals:", phoneDeals.length);
+    } catch (err) {
+      console.error("Error fetching phone deals:", err);
+    }
+
+    // TV Deals
+    let tvDeals = [];
+    try {
+      console.log("Fetching TV deals...");
+      tvDeals = await Product.find({ category: "TVs" })
+        .sort({ createdAt: -1 })
+        
+      console.log("Found TV deals:", tvDeals.length);
+    } catch (err) {
+      console.error("Error fetching TV deals:", err);
+    }
+
+    // Electronics Deals
+    let electronicsDeals = [];
+    try {
+      console.log("Fetching electronics deals...");
+      electronicsDeals = await Product.find({ category: "Electronics" })
+        .sort({ createdAt: -1 })
+        
+      console.log("Found electronics deals:", electronicsDeals.length);
+    } catch (err) {
+      console.error("Error fetching electronics deals:", err);
+    }
+
+    // Fashion Deals
+    let fashionDeals = [];
+    try {
+      console.log("Fetching fashion deals...");
+      fashionDeals = await Product.find({ category: "Fashion" })
+        .sort({ createdAt: -1 })
+        
+      console.log("Found fashion deals:", fashionDeals.length);
+    } catch (err) {
+      console.error("Error fetching fashion deals:", err);
+    }
+
+
+
+    // Furnitures Deals
+    let furnitureDeals = [];
+    try {
+      console.log("Fetching furniture deals...");
+      furnitureDeals = await Product.find({ category: "Furnitures" })
+        .sort({ createdAt: -1 });
+      console.log("Found furniture deals:", furnitureDeals.length);
+    } catch (err) {
+      console.error("Error fetching furniture deals:", err);
+    }
+
+    // Home-Comforts Deals
+    let homeComfortsDeals = [];
+    try {
+      console.log("Fetching home comforts deals...");
+      homeComfortsDeals = await Product.find({ category: "Home-Comforts" })
+        .sort({ createdAt: -1 });
+      console.log("Found home comforts deals:", homeComfortsDeals.length);
+    } catch (err) {
+      console.error("Error fetching home comforts deals:", err);
+    }
+
+    // Kitchen Deals
+    let kitchenDeals = [];
+    try {
+      console.log("Fetching kitchen deals...");
+      kitchenDeals = await Product.find({ category: "Kitchen" })
+        .sort({ createdAt: -1 });
+      console.log("Found kitchen deals:", kitchenDeals.length);
+    } catch (err) {
+      console.error("Error fetching kitchen deals:", err);
+    }
+
+    // Transport Deals
+    let transportDeals = [];
+    try {
+      console.log("Fetching transport deals...");
+      transportDeals = await Product.find({ category: "Transport" })
+        .sort({ createdAt: -1 });
+      console.log("Found transport deals:", transportDeals.length);
+    } catch (err) {
+      console.error("Error fetching transport deals:", err);
+    }
+
+    // Personal-Care Deals
+    let personalCareDeals = [];
+    try {
+      console.log("Fetching personal care deals...");
+      personalCareDeals = await Product.find({ category: "Personal-Care" })
+        .sort({ createdAt: -1 });
+      console.log("Found personal care deals:", personalCareDeals.length);
+    } catch (err) {
+      console.error("Error fetching personal care deals:", err);
+    }
+
+    // Send all sections in one response
+    res.json({
+      addedRecently,
+      phoneDeals,
+      tvDeals,
+      electronicsDeals,
+      fashionDeals,
+      furnitureDeals,
+      homeComfortsDeals,
+      kitchenDeals,
+      transportDeals,
+      personalCareDeals
+    });
+
+  } catch (err) {
+    console.error("Error loading homepage:", err);
+    res.status(500).json({ message: "Server error loading homepage", error: err.message });
+  }
+});
+
+    
+
+   
+
+
+
+
+    
+
+
+    
+   
+
 // GET product details by ID
 router.get('/:id', async (req, res) => {
     try {
@@ -86,6 +242,8 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json({ message: 'Error deleting product' });
     }
 });
+
+
 
 
 
