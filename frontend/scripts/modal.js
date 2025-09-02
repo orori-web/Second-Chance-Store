@@ -22,9 +22,9 @@ function renderModalProducts(page = 1) {
     const productWrapper = document.createElement('div');
     productWrapper.classList.add('product-container');
 
-    // Fix: Ensure image path does not have double /uploads/
-    const imageSrc = product.image.startsWith('/uploads/')
-      ? product.image
+    // 🔹 Updated: Use product.image directly if it's a full URL (Cloudinary), else add /uploads/
+    const imageSrc = product.image.startsWith('http') 
+      ? product.image 
       : `/uploads/${product.image}`;
 
     productWrapper.innerHTML = `
@@ -40,9 +40,11 @@ function renderModalProducts(page = 1) {
               data-id="${product._id}" 
               data-name="${product.name}" 
               data-price="${product.price}" 
-              data-image="${imageSrc}"
+              data-image="${imageSrc}" 
               data-seller-id="${product.sellerId}"
-              data-seller-phone="${product.sellerPhone}">Add to Cart</button>
+              data-seller-phone="${product.sellerPhone}">
+              <i class="fas fa-shopping-cart"></i>
+                        </button>
         </div>
       </div>
     `;
@@ -74,12 +76,12 @@ document.querySelectorAll('.see-all-btn').forEach(btn => {
     const row = document.getElementById(sectionId);
     if (!row) return;
 
-    // Build products array from dataset attributes (avoids double /uploads/)
+    // 🔹 Updated: Image is taken directly from dataset (can be Cloudinary URL)
     currentProducts = Array.from(row.children).map(card => ({
       _id: card.querySelector('.show-details')?.dataset.id || '',
       name: card.querySelector('.product-name')?.textContent || '',
       price: card.querySelector('.product-price')?.textContent.replace('Ksh ', '') || '',
-      image: card.querySelector('.add-to-cart')?.dataset.image || '', // relative path
+      image: card.querySelector('.add-to-cart')?.dataset.image || '',
       sellerId: card.querySelector('.add-to-cart')?.dataset.sellerId || '',
       sellerPhone: card.querySelector('.add-to-cart')?.dataset.sellerPhone || ''
     }));

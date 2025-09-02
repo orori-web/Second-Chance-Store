@@ -63,9 +63,12 @@ document.getElementById('search-query').addEventListener('input', async function
             const productWrapper = document.createElement('div');
             productWrapper.classList.add('product-container');
 
+            // 🔹 Updated: Use product.image directly if full URL (Cloudinary), else add /uploads/
+            const imageSrc = product.image.startsWith('http') ? product.image : `/uploads/${product.image}`;
+
             productWrapper.innerHTML = `
                 <div class="product-image-container">
-                    <img src="/uploads/${product.image}" alt="${product.name}" class="product-image">
+                    <img src="${imageSrc}" alt="${product.name}" class="product-image">
                 </div>
                 <div class="product-details">
                     <p class="product-name">${product.name}</p>
@@ -75,10 +78,11 @@ document.getElementById('search-query').addEventListener('input', async function
                         data-id="${product._id}"
                         data-name="${product.name}"
                         data-price="${product.price}"
-                        data-image="/uploads/${product.image}"
+                        data-image="${imageSrc}"  
                         data-seller-id="${product.sellerId || ''}"
                         data-seller-phone="${product.sellerPhone || ''}"
-                    >Add to Cart</button>
+                   <i class="fas fa-shopping-cart"></i>
+                        </button>
                 </div>
             `;
             productsContainer.appendChild(productWrapper);
@@ -124,7 +128,10 @@ document.getElementById('search-query').addEventListener('input', async function
             const response = await fetch(`/api/products/${productId}`);
             const product = await response.json();
 
-            document.getElementById('modal-product-image').src = `/uploads/${product.image}`;
+            // 🔹 Updated: Use Cloudinary URL directly if available
+            const imageSrc = product.image.startsWith('http') ? product.image : `/uploads/${product.image}`;
+
+            document.getElementById('modal-product-image').src = imageSrc;
             document.getElementById('modal-product-name').textContent = product.name;
             document.getElementById('modal-product-price').textContent = `Price: Ksh ${product.price}`;
             document.getElementById('modal-product-category').textContent = `Category: ${product.category}`;

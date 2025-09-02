@@ -1,11 +1,17 @@
+
+
+
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/product');
 const jwt = require('jsonwebtoken');
-const multer = require('multer');
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const cloudinary = require('cloudinary').v2;
-require('dotenv').config();
+const multer = require('multer');
+
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+
+
 
 // ✅ Configure Cloudinary
 cloudinary.config({
@@ -192,56 +198,68 @@ router.get('/homepage', async (req, res) => {
 
     
 
-   
-
-
-
-
-    
-
-
-    
-   
-
-// GET product details by ID
-router.get('/:id', async (req, res) => {
-    try {
-        const product = await Product.findById(req.params.id);
-        if (!product) return res.status(404).json({ message: 'Product not found' });
-        res.json(product);
-    } catch (err) {
-        res.status(500).json({ message: 'Error fetching product details' });
-    }
-});
-
-// ✅ POST a new product with file upload
+ // CREATE a new product
 router.post('/', authenticateToken, upload.single('image'), async (req, res) => {
+  console.log('--- New POST /api/products request received ---');
+
+  try {
+    // 🔎 Step 1: Authentication check
+    console.log('🟢 Step 1: Authentication check');
+    console.log('Req.user:', req.user);
+
+    if (!req.user) {
+      console.error('❌ No req.user found');
+      return res.status(401).json({ success: false, message: 'Unauthorized: No user data' });
+    }
+
+    // 🔎 Step 2: Debug request body
+    console.log('🟢 Step 2: Checking req.body');
+    console.log('Req.body:', req.body);
+
+    // 🔎 Step 3: Debug file upload
+    console.log('🟢 Step 3: Checking req.file');
+    console.log('Req.file:', req.file);
+
     const { name, description, category, price, sellerPhone } = req.body;
-    const image = req.file ? req.file.filename : null;
 
-    // Validate all required fields
-    if (!name || !description || !category || !price || !image || !sellerPhone) {
-        return res.status(400).json({ success: false, message: 'All fields required including phone number and image' });
+    if (!name || !description || !category || !price || !sellerPhone) {
+      console.error('❌ Missing required fields:', { name, description, category, price, sellerPhone });
+      return res.status(400).json({ success: false, message: 'All fields are required' });
     }
 
-    try {
-        const newProduct = new Product({
-            name,
-            description,
-            category,
-            price,
-            image,
-            sellerId: req.user.id, // link product to logged-in user
-            sellerPhone
-        });
-
-        await newProduct.save();
-        res.status(201).json({ success: true, message: 'Product posted successfully' });
-    } catch (err) {
-        console.error('Error posting product:', err);
-        res.status(500).json({ success: false, message: 'Error posting product' });
+    if (!req.file) {
+      console.error('❌ No image file uploaded');
+      return res.status(400).json({ success: false, message: 'Product image is required' });
     }
+
+    // 🔎 Step 4: Validate price
+    const priceNumber = Number(price);
+    if (isNaN(priceNumber) || priceNumber <= 0) {
+      return res.status(400).json({ success: false, message: 'Invalid price' });
+    }
+
+    // ✅ Save product to MongoDB
+    const newProduct = new Product({
+      name,
+      description,
+      category,
+      price: priceNumber,
+      sellerPhone,
+      image: req.file?.path || "default-image.jpg", // ✅ schema field = image
+      sellerId: req.user.id, 
+    });
+
+    await newProduct.save();
+
+    console.log('✅ Product saved:', newProduct);
+
+    res.status(201).json({ success: true, product: newProduct });
+  } catch (err) {
+    console.error('❌ Server error:', err);
+    res.status(500).json({ success: false, message: 'Server error', error: err.message });
+  }
 });
+
 
 // DELETE a product by ID
 router.delete('/:id', async (req, res) => {

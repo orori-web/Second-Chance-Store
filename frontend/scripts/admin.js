@@ -107,11 +107,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             products.forEach(product => {
                 const row = document.createElement("tr");
+
+                // 🔹 Updated: Handle Cloudinary URLs or fallback
+                const imageSrc = product.image 
+                    ? (product.image.startsWith('http') ? product.image : `/uploads/${product.image}`)
+                    : '/uploads/default-image.jpg';
+
                 row.innerHTML = `
                     <td>${product._id}</td>
                     <td>
                         <div class="product-cell">
-                            <img src="${product.image ? '/uploads/' + product.image : '/uploads/default-image.jpg'}" 
+                            <img src="${imageSrc}" 
                                  alt="${product.name}" class="product-img">
                             <span>${product.name}</span>
                         </div>

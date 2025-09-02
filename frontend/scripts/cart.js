@@ -8,23 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // ✅ Check if user is logged in (localStorage + backend fallback)
     async function checkLogin() {
         try {
-            // 1. Check localStorage first
             const localUser = localStorage.getItem('user');
-            if (localUser) {
-                return JSON.parse(localUser);
-            }
+            if (localUser) return JSON.parse(localUser);
 
-            // 2. Validate with backend (cookie-based session)
             const res = await fetch('/api/auth/me', { credentials: 'include' });
             if (!res.ok) return null;
 
             const data = await res.json();
             if (data.user) {
-                // Sync into localStorage for PWA support
                 localStorage.setItem('user', JSON.stringify(data.user));
                 return data.user;
             }
-
             return null;
         } catch (err) {
             console.error("Login check failed:", err);
@@ -63,9 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
         cartItems.forEach((item, index) => {
             const cartItem = document.createElement('div');
             cartItem.classList.add('cart-item');
+
+            // 🔹 Updated: Use full URL if Cloudinary or relative /uploads path
+            const imageSrc = item.image.startsWith('http') ? item.image : `/uploads/${item.image}`;
+
             cartItem.innerHTML = `
                 <div class="cart-item-container">
-                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                    <img src="${imageSrc}" alt="${item.name}" class="cart-item-image">
                     <div class="cart-item-details">
                         <p class="cart-item-name"><strong>${item.name}</strong></p>
                         <p class="cart-item-price">Price: Ksh ${item.price}</p>
@@ -143,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
             products: cartItems.map(item => ({
                 name: item.name,
                 price: item.price,
-                image: item.image,
+                image: item.image, // 🔹 Keep original Cloudinary URL if exists
                 sellerId: item.sellerId,
                 sellerPhone: item.sellerPhone
             })),

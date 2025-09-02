@@ -14,7 +14,7 @@ function renderSection(sectionId, products, categoryName) {
 
       productWrapper.innerHTML = `
         <div class="product-image-container">
-          <img src="/uploads/${product.image}" alt="${product.name}" class="product-image">
+          <img src="${product.image}" alt="${product.name}" class="product-image">
         </div>
         <div class="product-details">
           <p class="product-name">${product.name}</p>
@@ -25,9 +25,11 @@ function renderSection(sectionId, products, categoryName) {
                 data-id="${product._id}" 
                 data-name="${product.name}" 
                 data-price="${product.price}" 
-                data-image="/uploads/${product.image}"
+                data-image="${product.image}"
                 data-seller-id="${product.sellerId}"
-                data-seller-phone="${product.sellerPhone}">Add to Cart</button>
+                data-seller-phone="${product.sellerPhone}"
+                <i class="fas fa-shopping-cart"></i>
+                        </button>
           </div>
         </div>
       `;
