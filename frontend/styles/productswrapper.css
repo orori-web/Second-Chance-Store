@@ -111,13 +111,13 @@
 .product-name {
     font-size: 1.2em;
     font-weight: 600;
-    color: #333;
+    color: #064941fe;
     margin: 5px 0;
 }
 
 .product-price {
     font-size: 1em;
-    color: #ff6600;
+    color: #f39c12;
     margin: 5px 0 10px 0;
 }
 
@@ -133,7 +133,7 @@ button {
 }
 
 button.show-details {
-    background: #0e9f46;
+    background: #027e0efe;
     color: #fff;
 }
 

@@ -5,7 +5,7 @@ styles3.css
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 body {
@@ -16,12 +16,17 @@ body {
     min-height: 100vh;
 }
 
+@media (max-width: 769px) {
+.nav-main {
+  display: none;
+}
+}
 /* Main navigation */
 .nav-main {
     display: flex;
     justify-content: space-between;
     padding: 15px;
-    background-color: #333;
+   background-color: #064941fe;
     color: white;
 }
 
@@ -166,7 +171,7 @@ th {
 
 /* Apply a professional, modern font to the profile section */
 .profile-info {
-    font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+   font-family: 'Open Sans', sans-serif;
     font-weight: 600; /* Semi-bold for professional emphasis */
     font-size: 16px; 
     color: #111; /* Darker text for readability */

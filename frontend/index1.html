@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marketplace Home Page</title>
+        <link rel="stylesheet" href="styles/bottomnav.css">
+
     <link rel="stylesheet" href="styles/styles1.css">
     <link rel="stylesheet" href="styles/mobile.css">
     <link rel="stylesheet" href="styles/productswrapper.css">
-        <link rel="stylesheet" href="styles/modal.css">
+        <link rel="stylesheet" href="styles/bottomnav.css">
         <link rel="stylesheet" href="styles/mobile.css">
     <link rel="manifest" href="manifest.json">
+    <!-- Font Awesome CDN for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+
 <meta name="theme-color" content="#ff6600">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,46 +57,45 @@
     </nav>
     
     
-        <div class="categories">
-            <button>Categories</button>
-            <div class="categories-content">
-                <a href="#electronics">Electronics</a>
-                <a href="#fashion">Fashion</a>
-                <a href="#home">Home & Living</a>
-                <a href="#sports">Sports & Outdoors</a>
-            </div>
-        </div>
+       
     </nav>
 
 
-    <!-- Add this inside body -->
-<button id="installBtn" style="display: none;">
-  📲 Install App
-</button>
 
-<script src="/install.js"></script>
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <div>
-            <h1>Welcome to Our Marketplace</h1>
-            <p>Find the best deals and exclusive discounts on all products.</p>
-            <button onclick="window.location.href='products2.html'">Shop Now</button>
-        </div>
-    </div>
+    <!-- Hero Section 
+    <section class="hero-section">
+  <div class="hero-slider" id="hero-slider">
+    <div class="slide"><img src="styles\photos\Buy with us for better deals.png" alt="Flyer 1"></div>
+    <div class="slide"><img src="flyer2.jpg" alt="Flyer 2"></div>
+    <div class="slide"><img src="flyer3.jpg" alt="Flyer 3"></div>
+    
+  </div>
+</section>-->
+
 
     
     </div>
 
    
+<!-- Search Results Section -->
+<div class="section" id="search-results-section" style="display: none;">
+  <section class="homepage-section">
+    <div class="section-header">
+      <h2>Search Results</h2>
+    </div>
+    <div class="scroll-row" id="search-results"></div>
+  </section>
+</div>
 
 
 
-<!-- Recently Added Section -->
-   <div class="section">
-<section class="homepage-section">
+    <div class="section">
+    <section class="homepage-section">
+      <div class="section-header">
   <h2>Recently Added</h2>
      <button class="see-all-btn" data-target="addedRecently">See All</button>
+     </div>
   <div class="scroll-row" id="addedRecently"></div>
 
 </section>
@@ -98,8 +104,11 @@
 <!-- Electronics Deals Section -->
   <div class="section">
 <section class="homepage-section">
+  
+      <div class="section-header">
   <h2>Electronics Deals</h2>
   <button class="see-all-btn" data-target="electronics">See All</button>
+</div>
   <div class="scroll-row" id="electronics"></div>
    
 </section>
@@ -108,8 +117,11 @@
 <!-- Phone Deals Section -->
   <div class="section">
 <section class="homepage-section">
+  
+      <div class="section-header">
   <h2>Phone Deals</h2>
   <button class="see-all-btn" data-target="phones">See All</button>
+  </div>
   <div class="scroll-row" id="phones"></div>
 </section>
 </div>
@@ -117,8 +129,10 @@
 <!-- TV Deals Section -->
   <div class="section">
 <section class="homepage-section">
+      <div class="section-header">
   <h2>TV Deals</h2>
    <button class="see-all-btn" data-target="tvs">See All</button>
+   </div>
   <div class="scroll-row" id="tvs"></div>
 </section>
 </div>
@@ -126,8 +140,10 @@
 <!-- Fashion Deals Section -->
   <div class="section">
 <section class="homepage-section">
+      <div class="section-header">
   <h2>Fashion Deals</h2>
    <button class="see-all-btn" data-target="fashion">See All</button>
+   </div>
   <div class="scroll-row" id="fashion"></div>
 </section>
   </div>
@@ -135,8 +151,10 @@
   <!-- Furnitures Deals Section -->
 <div class="section">
   <section class="homepage-section">
+      <div class="section-header">
     <h2>Furnitures Deals</h2>
      <button class="see-all-btn" data-target="furnitures">See All</button>
+     </div>
     <div class="scroll-row" id="furnitures"></div>
   </section>
 </div>
@@ -144,8 +162,10 @@
 <!-- Home-Comforts Deals Section -->
 <div class="section">
   <section class="homepage-section">
-    <h2>Home-Comforts Deals</h2>
+      <div class="section-header">
+    <h2>Home Decor Deals</h2>
      <button class="see-all-btn" data-target="homeComforts">See All</button>
+     </div>
     <div class="scroll-row" id="homeComforts"></div>
   </section>
 </div>
@@ -153,8 +173,10 @@
 <!-- Kitchen Deals Section -->
 <div class="section">
   <section class="homepage-section">
+      <div class="section-header">
     <h2>Kitchen Deals</h2>
      <button class="see-all-btn" data-target="kitchen">See All</button>
+     </div>
     <div class="scroll-row" id="kitchen"></div>
   </section>
 </div>
@@ -162,8 +184,10 @@
 <!-- Transport Deals Section -->
 <div class="section">
   <section class="homepage-section">
+      <div class="section-header">
     <h2>Transport Deals</h2>
      <button class="see-all-btn" data-target="transport">See All</button>
+     </div>
     <div class="scroll-row" id="transport"></div>
   </section>
 </div>
@@ -171,8 +195,10 @@
 <!-- Personal-Care Deals Section -->
 <div class="section">
   <section class="homepage-section">
+      <div class="section-header">
     <h2>Personal-Care Deals</h2>
      <button class="see-all-btn" data-target="personalCare">See All</button>
+     </div>
     <div class="scroll-row" id="personalCare"></div>
   </section>
 </div>
@@ -190,7 +216,7 @@
 <!-- Popular Items Section -->
     <div class="section">
         <section class="popular-products-section">  
-        <h2>Popular Items</h2>
+        <h2>All Products</h2>
         <div class="items-container"></div>
          <!-- Popular products will be injected here -->
        <div id="product-details-modal" class="modal">
@@ -208,6 +234,28 @@
         </div>
       </div>
 
+  
+
+      <!-- Bottom Mobile Navigation -->
+<nav class="mobile-bottom-nav">
+  <a href="index1.html" class="nav-item active">
+    <i class="fas fa-home"></i>
+    <span>Home</span>
+  </a>
+  <a href="sell-product.html" class="nav-item">
+    <i class="fas fa-th-large"></i>
+    <span>Sell</span>
+  </a>
+  <a href="cart5.html" class="nav-item">
+    <i class="fas fa-shopping-cart"></i>
+    <span>Cart</span>
+  </a>
+  <a href="account3.html" class="nav-item">
+    <i class="fas fa-user"></i>
+    <span>Profile</span>
+  </a>
+</nav>
+
 
     <!-- Footer -->
     <footer class="footer">
@@ -219,28 +267,37 @@
             <a href="https://wa.me/+254748232243/">Contact Us</a>
         </div>
         <div class="footer-section">
-            <h4>Customer Service</h4>
-            <a href="T&C.html">Terms&Conditions</a>
+              <h4>T&C</h4>
+            <a href="T&C.html">Terms&conditions</a>
             <!--<a href="#returns">Returns</a>-->
            <!-- <a href="#shipping">Shipping Info</a>-->
            <!-- <a href="#support">Support</a>-->
         </div>
-        <div class="footer-section">
-            <h4>Follow Us</h4>
-            <div class="social-icons">
-                <a href="https://www.facebook.com/share/1AyLSaLpER/">Facebook</a>
-                <a href="#twitter">X</a>
-                <a href="https://wa.me/+254748232243/">Whatsapp</a>
-                <a href="https://www.instagram.com/secondchancestore_embu/">Instagram</a>
-            </div>
-        </div>
+       <div class="footer-section">
+  <h4>Follow Us</h4>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/share/1AyLSaLpER/" target="_blank">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+   
+    <a href="https://wa.me/+254748232243/" target="_blank">
+      <i class="fab fa-whatsapp"></i> 
+    </a>
+    <a href="https://www.instagram.com/secondchancestore_embu/" target="_blank">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+</div>
+
     </footer>
-    <script src="scripts\homepage.js"></script>
+     <script src="scripts/addtocart.js"></script>
+    <script src="scripts/homepage.js"></script>
     <script src="scripts/homepage2.js"></script>
      <script src="scripts/modal.js"></script>
+      
     <script src="scripts/search.js"></script>
-     <script src="scripts\hide.js"></script>
-      <script src="scripts/install.js"></script>
+     <script src="scripts/hide.js"></script>
+ 
      
     <script>
   if ('serviceWorker' in navigator) {

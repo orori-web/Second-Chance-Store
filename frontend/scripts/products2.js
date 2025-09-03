@@ -26,7 +26,7 @@ async function loadProducts(category = null) {
               <div class="product-details">
                   <p class="product-name">${product.name}</p>
                   <p class="product-price">Ksh ${product.price}</p>
-                  <button class="show-details" data-id="${product._id}">Product Details</button>
+                  <button class="show-details" data-id="${product._id}">Details</button>
                   <button class="add-to-cart" 
                       data-id="${product._id}" 
                       data-name="${product.name}" 

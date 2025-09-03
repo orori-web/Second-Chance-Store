@@ -8,8 +8,7 @@
 
 body {
     
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-               Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
 
 
     background-color: #f4f4f4;
@@ -24,7 +23,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 15px;
-    background-color: #333;
+      background-color: #064941fe;
     color: white;
 }
 
@@ -50,7 +49,13 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #f8f8f8;
+    background-color: #064941fe;
+
+     /* 🔹 Make sticky */
+    position: sticky;   /* stick at top */
+    top: 0;             /* position from top */
+    z-index: 1001;      /* above content, slightly above autocomplete suggestions */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* subtle shadow */
 }
 
 .search-bar {
@@ -112,37 +117,9 @@ body {
   color: #fff;
 }
 
-/* Dropdown categories */
-.categories {
-    position: relative;
-    display: inline-block;
-}
 
-.categories button {
-    padding: 8px;
-    border: none;
-    background-color: #333;
-    color: white;
-    cursor: pointer;
-    border-radius: 4px;
-}
 
-.categories-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    width: 200px;
-    z-index: 1;
-}
 
-.categories-content a {
-    display: block;
-    padding: 10px;
-    color: #333;
-    text-decoration: none;
-}
 
 .categories-content a:hover {
     background-color: #f0f0f0;
@@ -153,47 +130,15 @@ body {
     display: block;
 }
 
-/* Hero section */
-.hero {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 300px;
-    background: url('') no-repeat center center/cover;
-    color: rgb(1, 0, 0);
-    text-align: center;
-    padding: 20px;
-}
 
-.hero h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
 
-.hero p {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-}
 
-.hero button {
-    padding: 10px 20px;
-    font-size: 1em;
-    background-color: #ff6600;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.hero button:hover {
-    background-color: #ff4500;
-}
 
 /* Popular items and discount sections */
 .section {
     padding: 20px;
     margin: 10px auto;
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
     background-color: #ffffff;
     border-radius: 8px;
@@ -234,6 +179,13 @@ body {
     color: #555;
 }
 
+
+
+
+
+
+
+
 /* Footer */
 .footer {
     background-color: #333;
@@ -242,6 +194,17 @@ body {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    margin-top: auto;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 40px;
 }
 
 .footer-section {
@@ -265,8 +228,41 @@ body {
     color: #ff4500;
 }
 
+
+
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
 .social-icons a {
-    margin-right: 10px;
+  background: #444;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.social-icons a:hover {
+  background: #ff6600;
+  transform: scale(1.1);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid #444;
+  font-size: 0.9em;
+  color: #aaa;
 }
 
 /* Styling for product items in the popular products section */
@@ -379,4 +375,93 @@ body {
 .pagination button.active {
   background: #ff6600;
   color: #fff;
+}
+
+
+/* See All Button Styling */
+.see-all-btn {
+    display: inline-block;          /* makes it behave like a button */
+    padding: 8px 16px;             /* vertical & horizontal padding */
+    font-size: 14px;               /* readable size on mobile */
+    font-weight: bold;             /* makes text stand out */
+    color: #fff;                   /* button text color */
+    background-color: #ff6a00;     /* bright orange background */
+    border: none;                  /* remove default border */
+    border-radius: 6px;            /* rounded corners for modern look */
+    cursor: pointer;               /* pointer on hover */
+    transition: background-color 0.3s, transform 0.2s; /* smooth hover effect */
+    margin-left: auto;             /* push it to the right (if in flex container) */
+}
+
+/* Hover effect */
+.see-all-btn:hover {
+    background-color: #e65a00;    /* slightly darker orange on hover */
+    transform: translateY(-2px);  /* subtle lift effect */
+}
+
+/* Active / click effect */
+.see-all-btn:active {
+    background-color: #cc4f00;    /* darker orange on click */
+    transform: translateY(0);     /* reset lift */
+}
+
+/* Optional: make it responsive */
+@media (max-width: 480px) {
+    .see-all-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+.section-header {
+    display: flex;                  /* align items in a row */
+    align-items: center;            /* vertically center them */
+    justify-content: space-between; /* push heading left, button right */
+    margin-bottom: 10px;            /* spacing below header */
+}
+/* Main nav visible on large screens only */
+.main-nav {
+  display: flex; /* or your existing display */
+}
+
+
+
+
+
+.hero-section {
+  width: 100%;
+  overflow: hidden; /* hide overflowing slides */
+  position: relative;
+  height: 300px; /* adjust as needed */
+}
+
+.hero-slider {
+  display: flex;
+  width: max-content; /* allow horizontal scroll */
+  animation: slide-animation 15s linear infinite; /* auto scroll */
+}
+
+.hero-slider .slide {
+  min-width: 100%; /* each slide takes full hero width */
+  transition: transform 0.5s ease-in-out;
+}
+
+.hero-slider .slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Keyframes for automatic sliding */
+@keyframes slide-animation {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(0); }
+  25% { transform: translateX(-100%); }
+  45% { transform: translateX(-100%); }
+  50% { transform: translateX(-200%); }
+  70% { transform: translateX(-200%); }
+  75% { transform: translateX(-300%); }
+  95% { transform: translateX(-300%); }
+  100% { transform: translateX(0); }
 }

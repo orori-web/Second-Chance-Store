@@ -11,8 +11,8 @@ async function checkLogin() {
 
         if (!data.user) {
             localStorage.removeItem('user');
-            alert("You must log in first.");
-            window.location.href = "signup10.html";
+            showToast("You must log in first.", "error");
+            setTimeout(() => window.location.href = "signup10.html", 1500);
         } else {
             localStorage.setItem('user', JSON.stringify(data.user));
             console.log("Login confirmed:", data.user);
@@ -26,6 +26,50 @@ async function checkLogin() {
 
 // Call login check on page load
 checkLogin();
+
+// ===============================
+// ✅ Toast Notification Helper
+// ===============================
+function showToast(message, type = "info", persistent = false) {
+    let container = document.getElementById("toast-container");
+    if (!container) {
+        container = document.createElement("div");
+        container.id = "toast-container";
+        container.style.position = "fixed";
+        container.style.top = "20px";
+        container.style.right = "20px";
+        container.style.zIndex = "9999";
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement("div");
+    toast.textContent = message;
+    toast.style.background =
+        type === "success" ? "green" :
+        type === "error" ? "red" :
+        "rgba(0,0,0,0.8)";
+    toast.style.color = "#fff";
+    toast.style.padding = "10px 20px";
+    toast.style.marginTop = "10px";
+    toast.style.borderRadius = "5px";
+    toast.style.fontSize = "14px";
+    toast.style.opacity = "0";
+    toast.style.transition = "opacity 0.3s ease";
+
+    container.appendChild(toast);
+
+    // Fade in
+    requestAnimationFrame(() => { toast.style.opacity = "1"; });
+
+    if (!persistent) {
+        setTimeout(() => {
+            toast.style.opacity = "0";
+            toast.addEventListener("transitionend", () => toast.remove());
+        }, 3000);
+    }
+
+    return toast; // return element so we can remove manually
+}
 
 // ===============================
 // ✅ Handle form submission
@@ -42,12 +86,14 @@ document.getElementById('sell-product-Form').addEventListener('submit', async fu
 
     const fileInput = document.getElementById('productImage');
     if (!fileInput || fileInput.files.length === 0) {
-        alert('Please select a product image.');
+        showToast('Please select a product image.', 'error');
         return;
     }
 
-    // ✅ Set the file correctly with key 'image' to match multer
     formData.set('image', fileInput.files[0]);
+
+    // ✅ Show "Please wait..." toast while posting
+    const waitToast = showToast("⏳ Please wait… Posting your product", "info", true);
 
     try {
         const response = await fetch('/api/products', {
@@ -58,14 +104,18 @@ document.getElementById('sell-product-Form').addEventListener('submit', async fu
 
         const data = await response.json();
 
+        // Remove wait toast
+        waitToast.remove();
+
         if (response.ok && data.success) {
-            alert('🎉 Product posted successfully!');
-            window.location.href = '/products2.html';
+            showToast('🎉 Product posted successfully!', 'success');
+            setTimeout(() => window.location.href = '/index1.html', 1500);
         } else {
-            alert('❌ Error posting product: ' + (data.message || 'Unknown error'));
+            showToast('❌ Error posting product: ' + (data.message || 'Unknown error'), 'error');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('⚠️ An unexpected error occurred!');
+        waitToast.remove();
+        showToast('⚠️ An unexpected error occurred!', 'error');
     }
 });

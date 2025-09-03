@@ -1,28 +1,4 @@
 /* Mobile navigation - horizontal scroll */
-@media (max-width: 768px) {
-    .nav-main {
-        flex-direction: row;
-        overflow-x: auto;
-        white-space: nowrap;
-        padding: 10px;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .nav-links {
-        display: inline-flex;
-        gap: 10px;
-    }
-
-    .nav-main a {
-        flex: 0 0 auto;
-        padding: 8px 15px;
-        white-space: nowrap;
-    }
-
-    .nav-main::-webkit-scrollbar {
-        display: none;
-    }
-}
 
 /* Mobile Footer */
 @media (max-width: 768px) {

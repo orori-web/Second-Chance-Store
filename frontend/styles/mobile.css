@@ -1,34 +1,20 @@
 /* Mobile navigation - horizontal scroll */
+
+/* Hide main nav on small screens */
 @media (max-width: 768px) {
-    .nav-main {
-        flex-direction: row;
-        overflow-x: auto;
-        white-space: nowrap;
-        padding: 10px;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .nav-links {
-        display: inline-flex;
-        gap: 10px;
-    }
-
-    .nav-main a {
-        flex: 0 0 auto;
-        padding: 8px 15px;
-        white-space: nowrap;
-    }
-
-    .nav-main::-webkit-scrollbar {
-        display: none;
-    }
+  .nav-main {
+    display: none;
+  }
 }
+
+
+   
 
 /* Mobile Products - Two per row, no horizontal scroll */
 @media (max-width: 768px) {
     /* Section background */
     .section {
-        width: 95%;
+        width: 100%;
    
         margin: 10px auto;
         padding: 10px;
@@ -45,7 +31,7 @@
         max-width: 100%; /* allow full width */
         margin: 0 auto;
         padding: 0;
-        overflow-x: hidden;
+         overflow-x: visible;
     }
 
     /* Individual product cards */
@@ -76,14 +62,16 @@
         flex-direction: column;
         justify-content: space-between;
         flex-grow: 1;
+        
     }
 
-    .product-name {
+ .product-name {
         font-size: 0.85em;
         font-weight: bold;
-        color: #333;
+        color: #064941fe;
         margin-bottom: 4px;
         line-height: 1.2em;
+      
     }
 
     .product-price {
@@ -99,6 +87,7 @@
         border-radius:50x;
         margin-bottom: 4px;
         border-radius: 4px;
+
     }
 
     .show-details {
@@ -253,3 +242,190 @@
         color: white;
     }
 }
+
+   @media (max-width: 768px) {
+    /* Container for products - horizontal scroll */
+     .items-container {
+        display: flex;               /* flex layout for horizontal flow */
+        flex-direction: row;         /* arrange items in a row */
+        overflow-x: auto;            /* enable horizontal scrolling */
+        gap: 10px;                   /* space between product cards */
+        padding: 6px;                /* inner spacing */
+        width: 100%;
+        -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+    }
+
+    /* Individual product cards */
+     .product-container {
+        flex: 0 0 150px;             /* fixed width for each card, does not shrink */
+        height: 265px;               /* card height */
+        box-sizing: border-box;
+        padding: 6px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: #fff;            /* optional: card background */
+        border-radius: 8px;          /* optional: rounded corners */
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* subtle shadow */
+    }
+
+    /* Product images inside the cards */
+    .product-image-container img {
+        width: 100%;                 /* fill card width */
+        height: 150px;               /* fixed image height */
+        object-fit: cover;           /* crop image proportionally */
+        border-radius: 4px;          /* rounded corners */
+    }
+}
+
+
+
+/* ==========================
+   Products Modal Styling
+   ========================== */
+
+/* Modal container */
+@media (max-width: 768px) {
+.products-modal {
+    display: none;                /* hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 106%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); /* dark overlay */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow-y: auto;             /* scroll if content too tall */
+    padding: 20px;
+}
+
+/* Modal content box */
+.products-modal .modal-content {
+    background: #fff;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;             /* limit width on larger screens */
+    padding: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Close button */
+.products-modal .close-modal {
+    align-self: flex-end;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Grid for products */
+#modal-products-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* two per row */
+    gap: 10px;                            /* spacing between cards */
+}
+
+/* Individual product card */
+#modal-products-container .product-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #fff;
+    height: auto;                          /* adjusts to content */
+}
+
+/* Product image */
+#modal-products-container .product-image-container img {
+    width: 100%;
+    height: 120px;                          /* adjustable height */
+    object-fit: cover;                      /* crop proportionally */
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+
+/* Product details */
+#modal-products-container .product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 14px;
+}
+
+/* Buttons inside each product */
+#modal-products-container .button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+
+
+
+/* Show Details button */
+#modal-products-container .button-group .show-details {
+    flex: 1;
+    padding: 6px;
+    font-size: 13px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #0e9746; /* green */
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+#modal-products-container .button-group .show-details:hover {
+    background-color: #097035; /* darker green on hover */
+}
+
+/* Add to Cart button */
+#modal-products-container .button-group .add-to-cart {
+    flex: 1;
+    padding: 6px;
+    font-size: 13px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #f48b3a; /* orange */
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+#modal-products-container .button-group .add-to-cart:hover {
+    background-color: #e57a2a; /* darker orange on hover */
+}
+
+/* Pagination buttons */
+#modal-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+#modal-pagination button {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+#modal-pagination button.active {
+    background-color: #ff6a00;
+    color: #fff;
+}
+
+
+}
+
+
+

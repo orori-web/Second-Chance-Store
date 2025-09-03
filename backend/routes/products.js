@@ -1,6 +1,3 @@
-
-
-
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
@@ -8,10 +5,7 @@ const Product = require('../models/product');
 const jwt = require('jsonwebtoken');
 const cloudinary = require('cloudinary').v2;
 const multer = require('multer');
-
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
-
-
 
 // ✅ Configure Cloudinary
 cloudinary.config({
@@ -42,31 +36,43 @@ const authenticateToken = (req, res, next) => {
     });
 };
 
-// GET all products
+// ============================
+// ✅ GET all products with pagination
+// ============================
 router.get('/', async (req, res) => {
     try {
-        const products = await Product.find();
-        res.status(200).json(products);
+        let { page = 1, limit = 10 } = req.query;
+        page = parseInt(page);
+        limit = parseInt(limit);
+
+        const skip = (page - 1) * limit;
+
+        const products = await Product.find()
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limit);
+
+        const totalProducts = await Product.countDocuments();
+
+        res.status(200).json({
+            products,
+            currentPage: page,
+            totalPages: Math.ceil(totalProducts / limit),
+            totalProducts
+        });
     } catch (err) {
         console.error('Error fetching products:', err);
         res.status(500).json({ error: 'Server error' });
     }
 });
 
-
 // ✅ GET homepage sections (each section wrapped separately)
 router.get('/homepage', async (req, res) => {
   try {
-    
-
     // Added Recently
     let addedRecently = [];
     try {
-      console.log("Fetching recently added products...");
-      addedRecently = await Product.find()
-        .sort({ createdAt: -1 })
-        
-      console.log("Found recently added:", addedRecently.length);
+      addedRecently = await Product.find().sort({ createdAt: -1 });
     } catch (err) {
       console.error("Error fetching recently added products:", err);
     }
@@ -74,11 +80,7 @@ router.get('/homepage', async (req, res) => {
     // Phone Deals
     let phoneDeals = [];
     try {
-      console.log("Fetching phone deals...");
-      phoneDeals = await Product.find({ category: "Phones" })
-        .sort({ createdAt: -1 })
-        
-      console.log("Found phone deals:", phoneDeals.length);
+      phoneDeals = await Product.find({ category: "Phones" }).sort({ createdAt: -1 });
     } catch (err) {
       console.error("Error fetching phone deals:", err);
     }
@@ -86,11 +88,7 @@ router.get('/homepage', async (req, res) => {
     // TV Deals
     let tvDeals = [];
     try {
-      console.log("Fetching TV deals...");
-      tvDeals = await Product.find({ category: "TVs" })
-        .sort({ createdAt: -1 })
-        
-      console.log("Found TV deals:", tvDeals.length);
+      tvDeals = await Product.find({ category: "TVs" }).sort({ createdAt: -1 });
     } catch (err) {
       console.error("Error fetching TV deals:", err);
     }
@@ -98,11 +96,7 @@ router.get('/homepage', async (req, res) => {
     // Electronics Deals
     let electronicsDeals = [];
     try {
-      console.log("Fetching electronics deals...");
-      electronicsDeals = await Product.find({ category: "Electronics" })
-        .sort({ createdAt: -1 })
-        
-      console.log("Found electronics deals:", electronicsDeals.length);
+      electronicsDeals = await Product.find({ category: "Electronics" }).sort({ createdAt: -1 });
     } catch (err) {
       console.error("Error fetching electronics deals:", err);
     }
@@ -110,24 +104,15 @@ router.get('/homepage', async (req, res) => {
     // Fashion Deals
     let fashionDeals = [];
     try {
-      console.log("Fetching fashion deals...");
-      fashionDeals = await Product.find({ category: "Fashion" })
-        .sort({ createdAt: -1 })
-        
-      console.log("Found fashion deals:", fashionDeals.length);
+      fashionDeals = await Product.find({ category: "Fashion" }).sort({ createdAt: -1 });
     } catch (err) {
       console.error("Error fetching fashion deals:", err);
     }
 
-
-
     // Furnitures Deals
     let furnitureDeals = [];
     try {
-      console.log("Fetching furniture deals...");
-      furnitureDeals = await Product.find({ category: "Furnitures" })
-        .sort({ createdAt: -1 });
-      console.log("Found furniture deals:", furnitureDeals.length);
+      furnitureDeals = await Product.find({ category: "Furnitures" }).sort({ createdAt: -1 });
     } catch (err) {
       console.error("Error fetching furniture deals:", err);
     }
@@ -135,10 +120,7 @@ router.get('/homepage', async (req, res) => {
     // Home-Comforts Deals
     let homeComfortsDeals = [];
     try {
-      console.log("Fetching home comforts deals...");
-      homeComfortsDeals = await Product.find({ category: "Home-Comforts" })
-        .sort({ createdAt: -1 });
-      console.log("Found home comforts deals:", homeComfortsDeals.length);
+      homeComfortsDeals = await Product.find({ category: "Home-Comforts" }).sort({ createdAt: -1 });
     } catch (err) {
       console.error("Error fetching home comforts deals:", err);
     }
@@ -146,10 +128,7 @@ router.get('/homepage', async (req, res) => {
     // Kitchen Deals
     let kitchenDeals = [];
     try {
-      console.log("Fetching kitchen deals...");
-      kitchenDeals = await Product.find({ category: "Kitchen" })
-        .sort({ createdAt: -1 });
-      console.log("Found kitchen deals:", kitchenDeals.length);
+      kitchenDeals = await Product.find({ category: "Kitchen" }).sort({ createdAt: -1 });
     } catch (err) {
       console.error("Error fetching kitchen deals:", err);
     }
@@ -157,10 +136,7 @@ router.get('/homepage', async (req, res) => {
     // Transport Deals
     let transportDeals = [];
     try {
-      console.log("Fetching transport deals...");
-      transportDeals = await Product.find({ category: "Transport" })
-        .sort({ createdAt: -1 });
-      console.log("Found transport deals:", transportDeals.length);
+      transportDeals = await Product.find({ category: "Transport" }).sort({ createdAt: -1 });
     } catch (err) {
       console.error("Error fetching transport deals:", err);
     }
@@ -168,15 +144,11 @@ router.get('/homepage', async (req, res) => {
     // Personal-Care Deals
     let personalCareDeals = [];
     try {
-      console.log("Fetching personal care deals...");
-      personalCareDeals = await Product.find({ category: "Personal-Care" })
-        .sort({ createdAt: -1 });
-      console.log("Found personal care deals:", personalCareDeals.length);
+      personalCareDeals = await Product.find({ category: "Personal-Care" }).sort({ createdAt: -1 });
     } catch (err) {
       console.error("Error fetching personal care deals:", err);
     }
 
-    // Send all sections in one response
     res.json({
       addedRecently,
       phoneDeals,
@@ -196,62 +168,35 @@ router.get('/homepage', async (req, res) => {
   }
 });
 
-    
-
- // CREATE a new product
+// CREATE a new product
 router.post('/', authenticateToken, upload.single('image'), async (req, res) => {
-  console.log('--- New POST /api/products request received ---');
-
   try {
-    // 🔎 Step 1: Authentication check
-    console.log('🟢 Step 1: Authentication check');
-    console.log('Req.user:', req.user);
-
-    if (!req.user) {
-      console.error('❌ No req.user found');
-      return res.status(401).json({ success: false, message: 'Unauthorized: No user data' });
-    }
-
-    // 🔎 Step 2: Debug request body
-    console.log('🟢 Step 2: Checking req.body');
-    console.log('Req.body:', req.body);
-
-    // 🔎 Step 3: Debug file upload
-    console.log('🟢 Step 3: Checking req.file');
-    console.log('Req.file:', req.file);
-
     const { name, description, category, price, sellerPhone } = req.body;
 
     if (!name || !description || !category || !price || !sellerPhone) {
-      console.error('❌ Missing required fields:', { name, description, category, price, sellerPhone });
       return res.status(400).json({ success: false, message: 'All fields are required' });
     }
 
     if (!req.file) {
-      console.error('❌ No image file uploaded');
       return res.status(400).json({ success: false, message: 'Product image is required' });
     }
 
-    // 🔎 Step 4: Validate price
     const priceNumber = Number(price);
     if (isNaN(priceNumber) || priceNumber <= 0) {
       return res.status(400).json({ success: false, message: 'Invalid price' });
     }
 
-    // ✅ Save product to MongoDB
     const newProduct = new Product({
       name,
       description,
       category,
       price: priceNumber,
       sellerPhone,
-      image: req.file?.path || "default-image.jpg", // ✅ schema field = image
+      image: req.file?.path || "default-image.jpg",
       sellerId: req.user.id, 
     });
 
     await newProduct.save();
-
-    console.log('✅ Product saved:', newProduct);
 
     res.status(201).json({ success: true, product: newProduct });
   } catch (err) {
@@ -259,7 +204,6 @@ router.post('/', authenticateToken, upload.single('image'), async (req, res) => 
     res.status(500).json({ success: false, message: 'Server error', error: err.message });
   }
 });
-
 
 // DELETE a product by ID
 router.delete('/:id', async (req, res) => {
@@ -273,8 +217,16 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-
-
-
+// GET single product by ID
+router.get('/:id', async (req, res) => {
+    try {
+        const product = await Product.findById(req.params.id);
+        if (!product) return res.status(404).json({ message: 'Product not found' });
+        res.json(product);
+    } catch (err) {
+        console.error('Error fetching product by ID:', err);
+        res.status(500).json({ message: 'Server error fetching product', error: err.message });
+    }
+});
 
 module.exports = router;
