@@ -72,7 +72,9 @@ router.get('/homepage', async (req, res) => {
     // Added Recently
     let addedRecently = [];
     try {
-      addedRecently = await Product.find().sort({ createdAt: -1 });
+      addedRecently = await Product.find()
+      .sort({ createdAt: -1 })
+      .limit(20);
     } catch (err) {
       console.error("Error fetching recently added products:", err);
     }
