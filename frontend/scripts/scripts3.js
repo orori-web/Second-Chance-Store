@@ -28,7 +28,7 @@ function showGuest() {
 // Redirect guest users from protected pages
 // ============================
 function redirectIfGuest() {
-    if (window.location.pathname.includes("account.html")) {
+    if (window.location.pathname.includes("account3.html")) {
         // User not logged in → redirect to signup/login page
         window.location.href = "signup10.html";
     } else {
